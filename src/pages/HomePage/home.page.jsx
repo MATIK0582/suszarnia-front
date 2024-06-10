@@ -1,7 +1,7 @@
-import React from 'react'
+import React from "react";
 
-import { BurnerSettingForm } from '../../components/forms/BurnerSetting/burner-setting-form.component'
-import { HumidityChart } from '../../components/charts/Humidity/humidity-chart.component'
+import { HumidityChart } from "../../components/charts/Humidity/humidity-chart.component";
+import { BurnerSettingForm } from "../../components/forms/BurnerSetting/burner-setting-form.component";
 
 export const HomePage = () => {
   return (
@@ -9,5 +9,5 @@ export const HomePage = () => {
       <HumidityChart />
       <BurnerSettingForm />
     </>
-  )
-}
+  );
+};

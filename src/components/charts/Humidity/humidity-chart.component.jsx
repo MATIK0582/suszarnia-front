@@ -20,7 +20,7 @@ export const HumidityChart = () => {
       );
       const data = await response.json();
       console.log(data);
-      
+
       setData(data.data);
     } catch (error) {
       console.error(`Something bad happened: ${error}`);
@@ -33,7 +33,9 @@ export const HumidityChart = () => {
 
     const getData = async () => {
       await fetchData();
-      if (!isValid) { return; }
+      if (!isValid) {
+        return;
+      }
 
       interval = setInterval(async () => {
         console.log("Fetching new data");
@@ -44,16 +46,18 @@ export const HumidityChart = () => {
     getData();
 
     return () => {
-      isValid = false
+      isValid = false;
 
-      if (interval) {  clearInterval(interval); } 
+      if (interval) {
+        clearInterval(interval);
+      }
       console.log(interval);
     };
   }, []);
 
   return (
     <LineChart
-      width={500}
+      width={700}
       height={300}
       data={data}
       margin={{
