@@ -13,18 +13,42 @@ import {
 export const HumidityChart = () => {
   const [data, setData] = useState([]);
 
+  const fetchData = async () => {
+    try {
+      const response = await fetch(
+        "https://my-json-server.typicode.com/MATIK0582/suszarnia-front/db"
+      );
+      const data = await response.json();
+      console.log(data);
+      
+      setData(data.data);
+    } catch (error) {
+      console.error(`Something bad happened: ${error}`);
+    }
+  };
+
   useEffect(() => {
-    const interval = setInterval(() => {
-        fetch('https://my-json-server.typicode.com/MATIK0582/suszarnia-front/db')
-          .then((res) => { return res.json(); })
-          .then((data) => {
-            console.log(data);
-            setData(data.data) });
-    }, THIRTY_SECONDS_IN_MILLISECONDS)
+    let isValid = true;
+    let interval;
+
+    const getData = async () => {
+      await fetchData();
+      if (!isValid) { return; }
+
+      interval = setInterval(async () => {
+        console.log("Fetching new data");
+        await fetchData();
+      }, THIRTY_SECONDS_IN_MILLISECONDS);
+    };
+
+    getData();
 
     return () => {
-		clearInterval(interval);
-	};
+      isValid = false
+
+      if (interval) {  clearInterval(interval); } 
+      console.log(interval);
+    };
   }, []);
 
   return (
