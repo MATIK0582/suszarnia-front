@@ -1,5 +1,5 @@
 import { useForm } from "react-hook-form";
-import "./burnerSettingForm.scss"
+import "./burner-setting-form.scss"
 
 export const BurnerSettingForm = () => {
   const { register, control, handleSubmit, formState } = useForm();

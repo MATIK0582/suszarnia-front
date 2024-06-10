@@ -1,8 +1,13 @@
 import React from 'react'
-import { BurnerSettingForm } from '../../components/forms/BurnerSetting/BurnerSettingForm'
+
+import { BurnerSettingForm } from '../../components/forms/BurnerSetting/burner-setting-form.component'
+import { HumidityChart } from '../../components/charts/Humidity/humidity-chart.component'
 
 export const HomePage = () => {
   return (
-    <BurnerSettingForm />
+    <>
+      <HumidityChart />
+      <BurnerSettingForm />
+    </>
   )
 }
