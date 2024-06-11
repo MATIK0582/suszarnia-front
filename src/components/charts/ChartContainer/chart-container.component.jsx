@@ -72,7 +72,7 @@ export const ChartContainer = ({ fetchAddress }) => {
             width="100%"
             data={data}
             xAxisDataKey="index"
-            firstLineDataKey={param.key}
+            firstLineDataKey={param.firstLineDataKey}
             secondLineDataKey="y"
             title={param.title}
           />
