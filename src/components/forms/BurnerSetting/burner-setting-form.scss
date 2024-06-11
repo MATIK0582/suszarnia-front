@@ -73,3 +73,58 @@ form {
     cursor: not-allowed;
   }
 }
+
+
+.input-group {
+  margin-bottom: 1rem;
+}
+
+.input-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.input-group input[type="number"],
+.input-group input[type="submit"] {
+  width: 100%;
+  padding: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.error {
+  color: red;
+  font-size: 0.875rem;
+  margin-top: 0.25rem;
+}
+
+.mode-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.mode-options {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 0.5rem;
+}
+
+.mode-options label {
+  display: flex;
+  align-items: center;
+}
+
+.mode-options input[type="radio"] {
+  margin-right: 0.5rem;
+}
+
+.submit {
+  padding: 0.5rem 1rem;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.submit:hover {
+  background-color: #0056b3;
+}

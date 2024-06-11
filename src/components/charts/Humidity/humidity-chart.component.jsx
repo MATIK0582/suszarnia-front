@@ -2,59 +2,65 @@ import React, { PureComponent, useEffect, useState } from "react";
 import { THIRTY_SECONDS_IN_MILLISECONDS } from "../../../constans/constans";
 import { CustomLineChart } from "../custom-line-chart.component";
 import "./humidity-chart.scss";
+import {useAtom} from "jotai";
+import {cornDataAtom} from "../../../pages/HomePage/home.page";
 
 export const HumidityChart = ({ fetchAddress }) => {
-  const [data, setData] = useState([]);
+  const [cornData, setCornData] = useAtom(cornDataAtom);
+  // const [data, setData] = useState([]);
+  //
+  // const fetchData = async () => {
+  //   try {
+  //     const response = await fetch(fetchAddress);
+  //     const data = await response.json();
+  //     console.log(data.data);
+  //
+  //     setData(data.data);
+  //   } catch (error) {
+  //     console.error(`Something bad happened: ${error}`);
+  //   }
+  // };
 
-  const fetchData = async () => {
-    try {
-      const response = await fetch(fetchAddress);
-      const data = await response.json();
-      console.log(data.data);
+  // useEffect(() => {
+  //   let isValid = true;
+  //   let interval;
+  //
+  //   const getData = async () => {
+  //     await fetchData();
+  //     if (!isValid) {
+  //       return;
+  //     }
+  //   }
 
-      setData(data.data);
-    } catch (error) {
-      console.error(`Something bad happened: ${error}`);
-    }
-  };
+    //   interval = setInterval(async () => {
+    //     console.log("Fetching new data");
+    //     await fetchData();
+    //   }, THIRTY_SECONDS_IN_MILLISECONDS);
+    // };
 
-  useEffect(() => {
-    let isValid = true;
-    let interval;
+    // getData();
 
-    const getData = async () => {
-      await fetchData();
-      if (!isValid) {
-        return;
-      }
-
-      interval = setInterval(async () => {
-        console.log("Fetching new data");
-        await fetchData();
-      }, THIRTY_SECONDS_IN_MILLISECONDS);
-    };
-
-    getData();
-
-    return () => {
-      isValid = false;
-
-      if (interval) {
-        clearInterval(interval);
-      }
-      console.log(interval);
-    };
-  }, []);
+    // return () => {
+    //   isValid = false;
+    //
+    //   if (interval) {
+    //     clearInterval(interval);
+    //   }
+    //   console.log(interval);
+    // };
+  // }, [fetchAddress]);
 
   return (
-    <CustomLineChart
-      id="main"
-      width="50%"
-      data={data}
-      xAxisDataKey="index"
-      firstLineDataKey="y"
-      secondLineDataKey="u"
-      title="AAAAAAAAAA"
-    />
+        cornData &&
+            <CustomLineChart
+                id="main"
+                width="100%"
+                data={cornData.data}
+                xAxisDataKey="index"
+                firstLineDataKey="y"
+                secondLineDataKey="xDane13"
+                title="Humidity Data"
+            />
+
   );
 };
