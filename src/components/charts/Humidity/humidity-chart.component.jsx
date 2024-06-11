@@ -1,25 +1,16 @@
 import React, { PureComponent, useEffect, useState } from "react";
 import { THIRTY_SECONDS_IN_MILLISECONDS } from "../../../constans/constans";
-import {
-  LineChart,
-  Line,
-  XAxis,
-  YAxis,
-  CartesianGrid,
-  Tooltip,
-  Legend,
-} from "recharts";
+import { CustomLineChart } from "../custom-line-chart.component";
+import "./humidity-chart.scss";
 
-export const HumidityChart = () => {
+export const HumidityChart = ({ fetchAddress }) => {
   const [data, setData] = useState([]);
 
   const fetchData = async () => {
     try {
-      const response = await fetch(
-        "https://my-json-server.typicode.com/MATIK0582/suszarnia-front/db"
-      );
+      const response = await fetch(fetchAddress);
       const data = await response.json();
-      console.log(data);
+      console.log(data.data);
 
       setData(data.data);
     } catch (error) {
@@ -56,29 +47,14 @@ export const HumidityChart = () => {
   }, []);
 
   return (
-    <LineChart
-      width={700}
-      height={300}
+    <CustomLineChart
+      id="main"
+      width="50%"
       data={data}
-      margin={{
-        top: 5,
-        right: 30,
-        left: 20,
-        bottom: 5,
-      }}
-    >
-      <CartesianGrid strokeDasharray="3 3" />
-      <XAxis dataKey="name" />
-      <YAxis />
-      <Tooltip />
-      <Legend />
-      <Line
-        type="monotone"
-        dataKey="pv"
-        stroke="#8884d8"
-        activeDot={{ r: 9 }}
-      />
-      <Line type="monotone" dataKey="uv" stroke="#82ca9d" />
-    </LineChart>
+      xAxisDataKey="index"
+      firstLineDataKey="y"
+      secondLineDataKey="u"
+      title="AAAAAAAAAA"
+    />
   );
 };
